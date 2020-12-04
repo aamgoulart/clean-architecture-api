@@ -1,3 +1,5 @@
+import { UserRepository } from "../ports/user-repository";
+import { InMemoryUserRepository } from "./repository/in-memory-user-repository";
 import { UserData } from "./user-data";
 
 describe('Register user on mailing lis use case', () => {
