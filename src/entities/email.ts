@@ -1,4 +1,13 @@
+import { Either , right, left} from './../shared/either';
+import { InvalidEmailError } from './errors/invalid-email-error';
 export class Email {
+
+    private readonly email: string;
+
+    private constructor (email: string) {
+        this.email = email;
+    }
+
     static validate(email: string): boolean {
         const [local, domain] = email.split('@');
         const domainParts = domain.split('.');
@@ -29,6 +38,9 @@ export class Email {
         if (!email_regex.test(email)) {
             return false;
         }
+    }
 
+    static create (email: string): Either<InvalidEmailError, Email> {
+        return Email.validate(email) == true ?  right(new Email(email)) : left(new InvalidEmailError());
     }
 }
