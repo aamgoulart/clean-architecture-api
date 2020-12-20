@@ -31,4 +31,16 @@ describe('User domais entity', () => {
         });
         expect(error).toEqual(left(new InvalidNameError));
     });
+
+    test('shold craete user with valid data', () => {
+        const validName = 'email.mail.com';
+        const validUser = 'user';
+        const user: User = User.create({
+            name: validName,
+            email: validUser
+        });
+
+        expect(user.email).toEqual(validName);
+        expect(user.name).toEqual(validName);
+    })
 })
