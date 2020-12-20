@@ -21,4 +21,14 @@ describe('User domais entity', () => {
         });
         expect(error).toEqual(left(new InvalidNameError));
     })
+
+
+    test('should not create user with invalid name (too many char)', () => {
+        const invalidName = '0'.repeat(257);
+        const error = User.create({
+            name: invalidName,
+            email: 'email@mail.com'
+        });
+        expect(error).toEqual(left(new InvalidNameError));
+    });
 })
